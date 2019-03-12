@@ -3,7 +3,7 @@ script:
   - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
   - dep ensure -update
   - go test ./... -cover
-  - wget https://gist.githubusercontent.com/030/da7c28869ae69fc4c02634e253ab615b/raw/c96b4dfc385d98c31c52f9f4ef036fa546aa15eb/go-releases.sh
+  - wget https://gist.githubusercontent.com/030/9a74cf6537b32dfa666cdcbd9c0ccac7/raw/c96b4dfc385d98c31c52f9f4ef036fa546aa15eb/go-releases.sh
   - chmod +x ./go-releases.sh
   - ./go-releases.sh yq
 deploy:
