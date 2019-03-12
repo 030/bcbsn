@@ -1,0 +1,21 @@
+language: go
+script:
+  - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+  - dep ensure -update
+  - go test ./... -cover
+  - wget https://gist.githubusercontent.com/030/da7c28869ae69fc4c02634e253ab615b/raw/c96b4dfc385d98c31c52f9f4ef036fa546aa15eb/go-releases.sh
+  - chmod +x ./go-releases.sh
+  - ./go-releases.sh yq
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file:
+    - go-yq-darwin
+    - go-yq-darwin.sha512.txt
+    - go-yq-linux
+    - go-yq-linux.sha512.txt
+    - go-yq-windows.exe
+    - go-yq-windows.exe.sha512.txt
+  skip_cleanup: true
+  on:
+    tags: true
