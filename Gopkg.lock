@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  digest = "1:f381397b791177439bd6038a897c54551e1e5c3475725c688775f17a99bceb54"
+  digest = "1:33d940a4a7470064d124d6f263b92eb4f9e18ecc3c14a33780eaf0c18cf80fc7"
   name = "github.com/030/go-utils"
   packages = ["utils"]
   pruneopts = "UT"
-  revision = "e849f26ea3beda317d8c922012803e3e8ad15447"
-  version = "2.0.2"
+  revision = "8fae6c636aa2b13493b62be6c75df5eceed35f39"
+  version = "2.0.3"
 
 [[projects]]
   digest = "1:b5b556e6b6a213473c2233c21c67e91c11c09bda83baa51fe66e03e84a57de6c"
