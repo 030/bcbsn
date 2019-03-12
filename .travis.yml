@@ -1,7 +1,7 @@
 language: go
 script:
   - export DELIVERABLE=golang-bitbucket-cloud-build-status-notifier
-  - wget https://gist.githubusercontent.com/030/9a74cf6537b32dfa666cdcbd9c0ccac7/raw/7700173115ece5653284e136c58822d810fb11d0/go-releases.sh
+  - wget https://gist.githubusercontent.com/030/9a74cf6537b32dfa666cdcbd9c0ccac7/raw/c70f02c2bcabbef0dde482532d324aaced73fb3d/go-releases.sh
   - chmod +x ./go-releases.sh
   - ./go-releases.sh $DELIVERABLE
 deploy:
