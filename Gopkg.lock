@@ -6,16 +6,16 @@
   name = "github.com/030/go-utils"
   packages = ["utils"]
   pruneopts = "UT"
-  revision = "14abe844bfd2f41380408f4d1f905fa2a5b23bcc"
-  version = "2.0.1"
+  revision = "e849f26ea3beda317d8c922012803e3e8ad15447"
+  version = "2.0.2"
 
 [[projects]]
   digest = "1:b5b556e6b6a213473c2233c21c67e91c11c09bda83baa51fe66e03e84a57de6c"
   name = "github.com/030/golang-bitbucket-cloud-oauth-dance"
   packages = ["oauthdance"]
   pruneopts = "UT"
-  revision = "15599cf4b06c26c7af6635be07339f374a15a959"
-  version = "1.0.0"
+  revision = "89f3acb2d1627a5bf426402ead002e17f38f3386"
+  version = "1.0.1"
 
 [[projects]]
   digest = "1:31e761d97c76151dde79e9d28964a812c46efc5baee4085b86f68f0c654450de"
