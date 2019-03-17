@@ -13,7 +13,6 @@ RUN apk add curl git && \
     CGO_ENABLED=0 go build && \
     cp $PROJECT/golang-bitbucket-cloud-build-status-notifier-linux /golang-bitbucket-cloud-build-status-notifier-linux
 
-FROM alpine
+FROM scratch
 COPY --from=builder /golang-bitbucket-cloud-build-status-notifier-linux /golang-bitbucket-cloud-build-status-notifier-linux
-RUN ls && mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 ENTRYPOINT ["/golang-bitbucket-cloud-build-status-notifier-linux"]
