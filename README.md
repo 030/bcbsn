@@ -11,5 +11,5 @@ go run main.go -keyString key:string -buildState INPROGRESS -gitCommit f76d12349
 or
 
 ```
-docker run utrecht/golang-bitbucket-cloud-build-status-notifier:1.0.0 -h
+docker run utrecht/golang-bitbucket-cloud-build-status-notifier:1.0.1 -h
 ```
