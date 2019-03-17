@@ -9,5 +9,5 @@ go run main.go -keyString key:string -buildState INPROGRESS -gitCommit f76d12349
 or
 
 ```
-docker run golang-bitbucket-cloud-build-status-notifier -h
+docker run utrecht/golang-bitbucket-cloud-build-status-notifier -h
 ```
