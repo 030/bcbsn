@@ -1,26 +1,27 @@
 FROM golang:1.12.1-alpine
 
-ENV PROJECT /go/src/github.com/030/golang-bitbucket-cloud-build-status-notifier-linux/
+ENV PROJECT /go/src/github.com/030/golang-bitbucket-cloud-build-status-notifier-linux
 
 RUN mkdir -p $PROJECT && \
     adduser -D -g '' gbcbsn
 
 WORKDIR $PROJECT
 
-COPY main.go Gopkg.toml ./
+COPY main.go go.mod ./
 
-RUN apk add curl git && \
-    curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh && \
-    dep ensure && \
+RUN apk add git && \
+    export GO111MODULE=on && \
+    go mod download && \
     CGO_ENABLED=0 go build && \
-    cp $PROJECT/golang-bitbucket-cloud-build-status-notifier-linux /golang-bitbucket-cloud-build-status-notifier-linux
+    ls && \
+    cp golang-bitbucket-cloud-build-status-notifier /golang-bitbucket-cloud-build-status-notifier
 
 FROM scratch
 
 COPY --from=0 /etc/passwd /etc/passwd
-COPY --from=0 /golang-bitbucket-cloud-build-status-notifier-linux /golang-bitbucket-cloud-build-status-notifier-linux
+COPY --from=0 /golang-bitbucket-cloud-build-status-notifier /golang-bitbucket-cloud-build-status-notifier
 COPY --from=0 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 USER gbcbsn
 
-ENTRYPOINT ["/golang-bitbucket-cloud-build-status-notifier-linux"]
+ENTRYPOINT ["/golang-bitbucket-cloud-build-status-notifier"]
