@@ -6,19 +6,16 @@ env:
   - GIMME_OS=darwin
   - GIMME_OS=windows
 script:
-  - export DELIVERABLE=golang-bitbucket-cloud-build-status-notifier
-  - go build -v ./...
-  - echo $GIMME_OS
-  - ls
-  - wget https://gist.githubusercontent.com/030/9a74cf6537b32dfa666cdcbd9c0ccac7/raw/e7be7f0b09e217b7ecb5bd9dc8315eacaedaacef/go-releases.sh 
-  - chmod +x ./go-releases.sh
-  - ./go-releases.sh $DELIVERABLE
+  - diff -u <(echo -n) <(gofmt -d ./)
+  - export DELIVERABLE="golang-bitbucket-cloud-build-status-notifier-${GIMME_OS}"
+  - go test -short -cover -v -coverprofile=coverage.out -covermode=atomic ./...
+  - GOARCH=amd64 go build -o $DELIVERABLE
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
   file:
-    - ${DELIVERABLE}-${GIMME_OS}
-    - ${DELIVERABLE}-${GIMME_OS}.sha512.txt
+    - ${DELIVERABLE}
+    - ${DELIVERABLE}.sha512.txt
   skip_cleanup: true
   on:
     tags: true
