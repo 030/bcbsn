@@ -1,4 +1,6 @@
 language: go
+go:
+  - 1.12.1
 script:
   - export DELIVERABLE=golang-bitbucket-cloud-build-status-notifier
   - wget https://gist.githubusercontent.com/030/9a74cf6537b32dfa666cdcbd9c0ccac7/raw/e7be7f0b09e217b7ecb5bd9dc8315eacaedaacef/go-releases.sh 
