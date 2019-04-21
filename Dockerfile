@@ -1,4 +1,4 @@
-FROM golang:1.12.1-alpine
+FROM golang:1.12.4-alpine
 
 ENV PROJECT gbcbsn
 
