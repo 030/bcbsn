@@ -16,9 +16,9 @@ RUN apk add git && \
 FROM scratch
 
 COPY --from=0 /etc/passwd /etc/passwd
-COPY --from=0 /golang-bitbucket-cloud-build-status-notifier /golang-bitbucket-cloud-build-status-notifier
+COPY --from=0 /golang-bitbucket-cloud-build-status-notifier-linux /usr/local/golang-bitbucket-cloud-build-status-notifier-linux
 COPY --from=0 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 USER $PROJECT
 
-ENTRYPOINT ["/golang-bitbucket-cloud-build-status-notifier"]
+ENTRYPOINT ["/usr/local/golang-bitbucket-cloud-build-status-notifier-linux"]
