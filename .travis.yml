@@ -1,19 +1,21 @@
 language: go
+go:
+  - 1.12.4
+env:
+  - GIMME_OS=linux
+  - GIMME_OS=darwin
+  - GIMME_OS=windows
 script:
-  - export DELIVERABLE=golang-bitbucket-cloud-build-status-notifier
-  - wget https://gist.githubusercontent.com/030/9a74cf6537b32dfa666cdcbd9c0ccac7/raw/c70f02c2bcabbef0dde482532d324aaced73fb3d/go-releases.sh
-  - chmod +x ./go-releases.sh
-  - ./go-releases.sh $DELIVERABLE
+  - diff -u <(echo -n) <(gofmt -d ./)
+  - export DELIVERABLE="golang-bitbucket-cloud-build-status-notifier-${GIMME_OS}"
+  - go test -short -cover -v -coverprofile=coverage.out -covermode=atomic ./...
+  - GOARCH=amd64 go build -o $DELIVERABLE
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
   file:
-    - ${DELIVERABLE}-darwin
-    - ${DELIVERABLE}-darwin.sha512.txt
-    - ${DELIVERABLE}-linux
-    - ${DELIVERABLE}-linux.sha512.txt
-    - ${DELIVERABLE}-windows.exe
-    - ${DELIVERABLE}-windows.exe.sha512.txt
+    - ${DELIVERABLE}
+    - ${DELIVERABLE}.sha512.txt
   skip_cleanup: true
   on:
     tags: true
