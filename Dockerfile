@@ -13,4 +13,4 @@ COPY --from=0 /etc/passwd /etc/passwd
 COPY --from=0 /golang-bitbucket-cloud-build-status-notifier /usr/local/golang-bitbucket-cloud-build-status-notifier
 COPY --from=0 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 USER $PROJECT
-ENTRYPOINT ["/usr/local/golang-bitbucket-cloud-build-status-notifier-linux"]
+ENTRYPOINT ["/usr/local/golang-bitbucket-cloud-build-status-notifier"]
