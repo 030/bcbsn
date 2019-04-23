@@ -69,5 +69,10 @@ func main() {
 
 	utils.Debug()
 
-	buildStatus(oauthdance.Bearer(*keyString), *buildState, *gitCommit, *owner, *repositoryName, *buildNumber, *buildURL)
+	accessToken, err := oauthdance.Bearer(*keyString)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	buildStatus(accessToken, *buildState, *gitCommit, *owner, *repositoryName, *buildNumber, *buildURL)
 }
