@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/030/go-utils/utils"
@@ -35,7 +36,7 @@ func main() {
 	var keyString = flag.String(
 		"keyString",
 		"",
-		"The concatenate key and string, e.g. key:string")
+		"The concatenated clientId (key in bitbucket terms) and clientSecret (secret in bitbucket terms), e.g. clientId:clientSecret")
 
 	var buildState = flag.String(
 		"buildState",
@@ -50,24 +51,34 @@ func main() {
 	var owner = flag.String(
 		"owner",
 		"",
-		"The owner, e.g. your-name")
+		"The owner of the repository, e.g. it is 'atlassian' in 'https://bitbucket.org/atlassian/stash-example-plugin/src/master/'")
 
 	var repositoryName = flag.String(
 		"repositoryName",
 		"",
-		"The repositoryName, e.g. some-repository")
+		"The name of the repository, e.g. it is 'stash-example-plugin' in 'https://bitbucket.org/atlassian/stash-example-plugin/src/master/'")
 
 	var buildNumber = flag.String(
 		"buildNumber",
 		"",
-		"The buildNumber, e.g. buildNumber")
+		"The build number, e.g. the unique identifier of a build e.g. 333")
 
 	var buildURL = flag.String(
 		"buildURL",
 		"",
-		"The buildURL, e.g. buildURL")
+		"The url of the specific build (so bitbucket can direct you back), e.g. https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier/jobs/523263435")
 
-	utils.Debug()
+	flag.Parse()
+
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stdout, "golang-bitbucket-cloud-build-status-notifier sets the status of a build in bitbucket.\n\n")
+		flag.PrintDefaults()
+	}
+
+	if *keyString == "" || *buildState == "" || *gitCommit == "" || *owner == "" || *repositoryName == "" || *buildNumber == "" || *buildURL == "" {
+		flag.Usage()
+		os.Exit(1)
+	}
 
 	accessToken, err := oauthdance.Bearer(*keyString)
 	if err != nil {
