@@ -69,11 +69,6 @@ func main() {
 
 	flag.Parse()
 
-	flag.Usage = func() {
-		fmt.Fprintf(os.Stdout, "golang-bitbucket-cloud-build-status-notifier sets the status of a build in bitbucket.\n\n")
-		flag.PrintDefaults()
-	}
-
 	if *keyString == "" || *buildState == "" || *gitCommit == "" || *owner == "" || *repositoryName == "" || *buildNumber == "" || *buildURL == "" {
 		flag.Usage()
 		os.Exit(1)
