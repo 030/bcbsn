@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/030/golang-bitbucket-cloud-build-status-notifier)](https://goreportcard.com/report/github.com/030/golang-bitbucket-cloud-build-status-notifier)
 [![dockeri.co](https://dockeri.co/image/utrecht/golang-bitbucket-cloud-build-status-notifier)](https://hub.docker.com/r/utrecht/golang-bitbucket-cloud-build-status-notifier)
 
-Example for running this command given a:
+Example for running this command given:
 
 - **client id**: 1234
 - **client secret**: 4567
