@@ -8,7 +8,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/030/go-utils/utils"
 	"github.com/030/golang-bitbucket-cloud-oauth-dance/oauthdance"
 	log "github.com/sirupsen/logrus"
 )
