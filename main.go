@@ -6,29 +6,55 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/030/go-utils/utils"
 	"github.com/030/golang-bitbucket-cloud-oauth-dance/oauthdance"
 	log "github.com/sirupsen/logrus"
 )
 
-func buildStatus(bearer string, buildState string, gitCommit string, owner string, repositoryOwner string, buildNumber string, buildURL string) {
+type Body struct {
+	State       string
+	Key         string
+	Name        string
+	URL         string
+	Description string
+}
+
+var netClient = http.Client{
+	Timeout: time.Second * 10,
+}
+
+const bitbucketAPIEndpoint = "https://api.bitbucket.org/2.0/repositories"
+
+// We need to be able to overwrite the endpoint in our unit tests
+// So we use the approach as described here: https://stackoverflow.com/a/33774754/10224882
+func buildStatus(bearer, buildState, gitCommit, owner, repositoryOwner, buildNumber, buildURL string) error {
+	return buildStatusImpl(bitbucketAPIEndpoint, bearer, buildState, gitCommit, owner, repositoryOwner, buildNumber, buildURL)
+}
+
+func buildStatusImpl(bitbucketEndpoint, bearer, buildState, gitCommit, owner, repositoryOwner, buildNumber, buildURL string) error {
 	body := strings.NewReader(`{"key":"` + buildNumber + `","state":"` + buildState + `","url":"` + buildURL + `"}`)
-	req, err := http.NewRequest("POST", "https://api.bitbucket.org/2.0/repositories/"+owner+"/"+repositoryOwner+"/commit/"+gitCommit+"/statuses/build", body)
+	req, err := http.NewRequest("POST", bitbucketEndpoint+"/"+owner+"/"+repositoryOwner+"/commit/"+gitCommit+"/statuses/build", body)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 	req.Header.Set("Authorization", "Bearer "+bearer)
 	req.Header.Set("Content-Type", "application/json")
 
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		log.Fatal(err)
+	resp, err := netClient.Do(req)
+	if resp != nil {
+		defer resp.Body.Close()
 	}
-	defer resp.Body.Close()
+
+	if err != nil {
+		return err
+	}
 
 	bodyBytes, _ := ioutil.ReadAll(resp.Body)
 	fmt.Println(string(bodyBytes))
+
+	return nil
 }
 
 func main() {
