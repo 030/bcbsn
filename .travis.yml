@@ -5,6 +5,7 @@ env:
   - GIMME_OS=linux
   - GIMME_OS=darwin
   - GIMME_OS=windows
+  - GO111MODULE=on
 script:
   - diff -u <(echo -n) <(gofmt -d ./)
   - export DELIVERABLE="golang-bitbucket-cloud-build-status-notifier-${GIMME_OS}"
