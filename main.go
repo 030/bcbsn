@@ -108,7 +108,7 @@ func main() {
 	var owner = flag.String(
 		"owner",
 		"",
-		"The owner, e.g. your-name")
+		"The owner of the repository, e.g. it is 'atlassian' in 'https://bitbucket.org/atlassian/stash-example-plugin/src/master/'")
 
 	var repoSlug = flag.String(
 		"repoSlug",
@@ -118,17 +118,17 @@ func main() {
 	var key = flag.String(
 		"key",
 		"",
-		"The key, e.g. buildNumber")
+		"The key, e.g. a unique id of the build (use the build id)")
 
 	var url = flag.String(
 		"url",
 		"",
-		"The url, e.g. url")
+		"The url, e.g. https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier/builds/523263434")
 
 	var name = flag.String(
 		"name",
 		"",
-		"An identifier for the build")
+		"An identifier for the build e.g. 'build 2'")
 
 	flag.Parse()
 
