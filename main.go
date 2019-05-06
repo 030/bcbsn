@@ -2,14 +2,21 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"time"
+
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/clientcredentials"
 )
+
+const bitbucketAPIEndpoint = "https://api.bitbucket.org/2.0/repositories"
 
 type Body struct {
 	UUID  string `json:"uuid"`  // The Git commit hash
@@ -19,24 +26,35 @@ type Body struct {
 	Name  string `json:"name"`  // The identifier of the build
 }
 
-var httpClient = http.Client{
+var httpClientWithTimeout = http.Client{
 	Timeout: time.Second * 10,
 }
-
-const bitbucketAPIEndpoint = "https://api.bitbucket.org/2.0/repositories"
 
 func prepareBody(commit, key, url, state, name string) ([]byte, error) {
 	b := Body{commit, key, url, state, name}
 	return json.Marshal(b)
 }
 
-// We need to be able to overwrite the endpoint in our unit tests
-// So we use the approach as described here: https://stackoverflow.com/a/33774754/10224882
-func buildStatus(owner, repoSlug, commit, key, url, state, name string) error {
-	return buildStatusImpl(httpClient, bitbucketAPIEndpoint, owner, repoSlug, commit, key, url, state, name)
+func prepareOAUTH2HTTPClient(httpClient http.Client, clientID, clientSecret string) *http.Client {
+	config := &clientcredentials.Config{
+		ClientID:     clientID,
+		ClientSecret: clientSecret,
+		TokenURL:     "https://bitbucket.org/site/oauth2/access_token",
+	}
+
+	// Instead of the default httpClient use our custom client (which sets a timeout)
+	ctx := context.WithValue(oauth2.NoContext, oauth2.HTTPClient, httpClient)
+	return config.Client(ctx)
 }
 
-func buildStatusImpl(httpClient http.Client, bitbucketEndpoint, owner, repoSlug, commit, key, url, state, name string) error {
+// We need to be able to overwrite the endpoint in our unit tests
+// So we use the approach as described here: https://stackoverflow.com/a/33774754/10224882
+func setBuildStatus(clientID, clientSecret, owner, repoSlug, commit, key, url, state, name string) error {
+	httpClient := prepareOAUTH2HTTPClient(httpClientWithTimeout, clientID, clientSecret)
+	return setBuildStatusImpl(*httpClient, bitbucketAPIEndpoint, owner, repoSlug, commit, key, url, state, name)
+}
+
+func setBuildStatusImpl(httpClient http.Client, bitbucketEndpoint, owner, repoSlug, commit, key, url, state, name string) error {
 	body, err := prepareBody(commit, key, url, state, name)
 	if err != nil {
 		return err
@@ -50,8 +68,8 @@ func buildStatusImpl(httpClient http.Client, bitbucketEndpoint, owner, repoSlug,
 
 	resp, err := httpClient.Do(req)
 	if resp != nil {
-		if resp.StatusCode != http.StatusCreated {
-			return fmt.Errorf("Expected %d, but got %s", http.StatusCreated, resp.Status)
+		if resp.StatusCode != http.StatusOK {
+			return fmt.Errorf("Expected %d, but got %s", http.StatusOK, resp.Status)
 		}
 		defer resp.Body.Close()
 	}
@@ -67,15 +85,25 @@ func buildStatusImpl(httpClient http.Client, bitbucketEndpoint, owner, repoSlug,
 }
 
 func main() {
-	var state = flag.String(
-		"buildState",
+	var clientID = flag.String(
+		"clientID",
 		"",
-		"The buildState, e.g. SUCCESSFUL, INPROGRESS or FAILED")
+		"The clientID used for the 'client credentials' token flow with BitBucket")
+
+	var clientSecret = flag.String(
+		"clientSecret",
+		"",
+		"The clientSecret used for the 'client credentials' token flow with BitBucket")
+
+	var state = flag.String(
+		"state",
+		"",
+		"The state, e.g. SUCCESSFUL, INPROGRESS or FAILED")
 
 	var commit = flag.String(
-		"gitCommit",
+		"commit",
 		"",
-		"The gitCommit, e.g. 57484fd5460017aef111e8b4ec116a30ff0b4904")
+		"The commit, e.g. 57484fd5460017aef111e8b4ec116a30ff0b4904")
 
 	var owner = flag.String(
 		"owner",
@@ -83,26 +111,33 @@ func main() {
 		"The owner, e.g. your-name")
 
 	var repoSlug = flag.String(
-		"repositoryName",
+		"repoSlug",
 		"",
-		"The repositoryName, e.g. some-repository")
+		"The repoSlug, e.g. some-repository")
 
 	var key = flag.String(
-		"buildNumber",
+		"key",
 		"",
-		"The buildNumber, e.g. buildNumber")
+		"The key, e.g. buildNumber")
 
 	var url = flag.String(
-		"buildURL",
+		"url",
 		"",
-		"The buildURL, e.g. buildURL")
+		"The url, e.g. url")
 
 	var name = flag.String(
 		"name",
 		"",
 		"An identifier for the build")
 
-	err := buildStatus(*owner, *repoSlug, *commit, *key, *url, *state, *name)
+	flag.Parse()
+
+	if *clientID == "" || *clientSecret == "" || *state == "" || *commit == "" || *owner == "" || *repoSlug == "" || *key == "" || *url == "" || *name == "" {
+		flag.Usage()
+		os.Exit(1)
+	}
+
+	err := setBuildStatus(*clientID, *clientSecret, *owner, *repoSlug, *commit, *key, *url, *state, *name)
 	if err != nil {
 		log.Fatal(err)
 	}
