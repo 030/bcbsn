@@ -11,13 +11,15 @@ import (
 )
 
 const (
-	commit   = "c1o2m3m4i5t6"
-	key      = "1"
-	url      = "http://build.url"
-	state    = "SUCCESSFUL"
-	name     = "build #1"
-	owner    = "030"
-	repoSlug = "repo_slug"
+	clientID     = "1234"
+	clientSecret = "5678"
+	commit       = "c1o2m3m4i5t6"
+	key          = "1"
+	url          = "http://build.url"
+	state        = "SUCCESSFUL"
+	name         = "build #1"
+	owner        = "030"
+	repoSlug     = "repo_slug"
 )
 
 var testHTTPClient = http.Client{
@@ -31,29 +33,29 @@ func TestHTTPClientShouldTimeOutAfterTenSeconds(t *testing.T) {
 	}))
 	defer svr.Close()
 
-	err := buildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
+	err := setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
 
 	if !strings.Contains(err.Error(), expectedError) {
-		t.Errorf("Expected '%v', but got '%v'", err, expectedError)
+		t.Errorf("Expected '%v', but got '%v'", expectedError, err)
 	}
 }
 
 func TestHTTPClientShouldFailIfResponseIsNotA201(t *testing.T) {
-	expectedError := "Expected 201, but got 400 Bad Request"
+	expectedError := "Expected 200, but got 400 Bad Request"
 	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 	}))
 	defer svr.Close()
 
-	err := buildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
+	err := setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
 
 	if err.Error() != expectedError {
-		t.Errorf("Expected '%v', but got '%v'", err, expectedError)
+		t.Errorf("Expected '%v', but got '%v'", expectedError, err)
 	}
 }
 
 func TestPostBodyHasExpectedContent(t *testing.T) {
-	url := "/030/repo_slug/commit/c1o2m3m4i5t6/statuses/build"
+	expectedURL := "/030/repo_slug/commit/c1o2m3m4i5t6/statuses/build"
 	expectedBody := Body{commit, key, url, state, name}
 	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
@@ -61,8 +63,8 @@ func TestPostBodyHasExpectedContent(t *testing.T) {
 		if r.Method != "POST" {
 			t.Errorf("Expected ‘POST’ request, got ‘%s’", r.Method)
 		}
-		if r.URL.EscapedPath() != url {
-			t.Errorf("Expected request to '%s', got '%s'", url, r.URL.EscapedPath())
+		if r.URL.EscapedPath() != expectedURL {
+			t.Errorf("Expected request to '%s', got '%s'", expectedURL, r.URL.EscapedPath())
 		}
 		if r.Header.Get("Content-type") != "application/json" {
 			t.Errorf("Expected content-type to be 'application/json', but got '%s'", r.Header.Get("Content-type"))
@@ -81,5 +83,5 @@ func TestPostBodyHasExpectedContent(t *testing.T) {
 	}))
 	defer svr.Close()
 
-	buildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
+	setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
 }
