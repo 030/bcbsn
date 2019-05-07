@@ -1,16 +1,23 @@
 language: go
 go:
   - 1.12.4
+os:
+  - linux
+  - osx
+  - windows
 env:
-  - GIMME_OS=linux
-  - GIMME_OS=darwin
-  - GIMME_OS=windows
   - GO111MODULE=on
+addons:
+  sonarcloud:
+    organization: 030-github
+    token:
+      secure: $SONAR_TOKEN
 script:
   - diff -u <(echo -n) <(gofmt -d ./)
   - export DELIVERABLE="golang-bitbucket-cloud-build-status-notifier-${GIMME_OS}"
   - go test -short -cover -v -coverprofile=coverage.out -covermode=atomic ./...
   - GOARCH=amd64 go build -o $DELIVERABLE
+  - sonar-scanner -Dsonar.projectKey=030_golang-bitbucket-cloud-build-status-notifier -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.coverage.exclusions=main.go,**/*_test.go -Dsonar.go.coverage.reportPaths="coverage.out"
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
