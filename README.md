@@ -3,6 +3,17 @@
 [![Build Status](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier.svg?branch=master)](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier)
 [![Go Report Card](https://goreportcard.com/badge/github.com/030/golang-bitbucket-cloud-build-status-notifier)](https://goreportcard.com/report/github.com/030/golang-bitbucket-cloud-build-status-notifier)
 [![dockeri.co](https://dockeri.co/image/utrecht/golang-bitbucket-cloud-build-status-notifier)](https://hub.docker.com/r/utrecht/golang-bitbucket-cloud-build-status-notifier)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=bugs)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=code_smells)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=coverage)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=ncloc)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=alert_status)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=security_rating)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=sqale_index)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
 
 Example for running this command given:
 
