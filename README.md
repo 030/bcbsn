@@ -7,6 +7,7 @@
 ![Pull requests](https://img.shields.io/github/issues-pr-raw/030/golang-bitbucket-cloud-build-status-notifier.svg)
 ![Total downloads](https://img.shields.io/github/downloads/030/golang-bitbucket-cloud-build-status-notifier/total.svg)
 ![License](https://img.shields.io/github/license/030/golang-bitbucket-cloud-build-status-notifier.svg)
+![Repository Size](https://img.shields.io/github/repo-size/030/golang-bitbucket-cloud-build-status-notifier.svg)
 ![Latest Production Release Version](https://img.shields.io/github/release/030/golang-bitbucket-cloud-build-status-notifier.svg)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=bugs)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=code_smells)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
