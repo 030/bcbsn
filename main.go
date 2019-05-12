@@ -123,7 +123,7 @@ func main() {
 	var url = flag.String(
 		"url",
 		"",
-		"The url, e.g. https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier/builds/523263434")
+		"The url, e.g. https://travis-ci.org/030/bcbsn/builds/523263434")
 
 	var name = flag.String(
 		"name",
