@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier.svg?branch=master)](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier)
 [![Go Report Card](https://goreportcard.com/badge/github.com/030/golang-bitbucket-cloud-build-status-notifier)](https://goreportcard.com/report/github.com/030/golang-bitbucket-cloud-build-status-notifier)
-[![dockeri.co](https://dockeri.co/image/utrecht/golang-bitbucket-cloud-build-status-notifier)](https://hub.docker.com/r/utrecht/golang-bitbucket-cloud-build-status-notifier)
+![Docker Pulls](https://img.shields.io/docker/pulls/utrecht/golang-bitbucket-cloud-build-status-notifier.svg)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=bugs)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=code_smells)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=coverage)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
@@ -31,6 +31,8 @@ go run main.go -keyString 1234:5678 -buildState INPROGRESS -gitCommit f76d123498
 ```
 
 To print the help message
+
+[![dockeri.co](https://dockeri.co/image/utrecht/golang-bitbucket-cloud-build-status-notifier)](https://hub.docker.com/r/utrecht/golang-bitbucket-cloud-build-status-notifier)
 
 ```
 docker run utrecht/golang-bitbucket-cloud-build-status-notifier:1.1.1 -h
