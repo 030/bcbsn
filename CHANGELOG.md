@@ -17,29 +17,23 @@ impossible to rename repositories on dockerhub.
 - Repository renamed to bcbsn as former name exceeded tag character limit on [StackExchange](https://stackexchange.com/).
 - All references in README renamed due to repository name change.
 
-### Removed
-- Section about "changelog" vs "CHANGELOG".
-
 ## [1.1.2] - 2019-05-06
 ### Added
-- RU translation from [@aishek](https://github.com/aishek).
-- pt-BR translation from [@tallesl](https://github.com/tallesl).
-- es-ES translation from [@ZeliosAriex](https://github.com/ZeliosAriex).
+- Documented how to use the bcbsn tool.
 
 ## [1.1.1] - 2015-10-06
-### Changed
-- Remove exclusionary mentions of "open source" since this project can
-benefit both "open" and "closed" source projects equally.
+### Fixed
+- Executable file in Docker image was incorrect.
 
-## [1.1.0] - 2015-10-06
-### Added
-- Answer "Should you ever rewrite a change log?".
+## [1.1.0] - 2019-04-23
+### Changed
+- Improved logging to ensure that it will become easier to use the bcbsn tool.
 
 ### Changed
 - Improve argument against commit logs.
 - Start following [SemVer](https://semver.org) properly.
 
-## [1.0.2] - 2019-03-17
+## [1.0.2] - 2019-03-26
 ### Fixed
 - Access token missing due to missing CA certificates in Scratch image.
 
