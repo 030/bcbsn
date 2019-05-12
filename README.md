@@ -1,4 +1,4 @@
-# golang-bitbucket-cloud-build-status-notifier
+# bcbsn
 
 [![Build Status](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier.svg?branch=master)](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier)
 [![Go Report Card](https://goreportcard.com/badge/github.com/030/golang-bitbucket-cloud-build-status-notifier)](https://goreportcard.com/report/github.com/030/golang-bitbucket-cloud-build-status-notifier)
@@ -25,6 +25,8 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=security_rating)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=sqale_index)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
+
+The Bitbucket Cloud Build Status Notifier (BCBSN) is a tool that sends a build status to bitbucket cloud.
 
 Example for running this command given:
 
