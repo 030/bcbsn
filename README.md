@@ -51,5 +51,5 @@ Example for running this command given:
 To print the help message
 
 ```
-docker run utrecht/bcbsn:1.1.1 -h
+docker run utrecht/bcbsn:2.0.0 -h
 ```
