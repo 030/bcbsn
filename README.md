@@ -10,7 +10,7 @@
 ![License](https://img.shields.io/github/license/030/golang-bitbucket-cloud-build-status-notifier.svg)
 ![Repository Size](https://img.shields.io/github/repo-size/030/golang-bitbucket-cloud-build-status-notifier.svg)
 ![Contributors](https://img.shields.io/github/contributors/030/golang-bitbucket-cloud-build-status-notifier.svg)
-![Commit activity](https://img.shields.io/github/commit-activity/030/golang-bitbucket-cloud-build-status-notifier.svg)
+![Commit activity](https://img.shields.io/github/commit-activity/m/030/golang-bitbucket-cloud-build-status-notifier.svg)
 ![Last commit](https://img.shields.io/github/last-commit/030/golang-bitbucket-cloud-build-status-notifier.svg)
 ![Release date](https://img.shields.io/github/release-date/030/golang-bitbucket-cloud-build-status-notifier.svg)
 ![Latest Production Release Version](https://img.shields.io/github/release/030/golang-bitbucket-cloud-build-status-notifier.svg)
