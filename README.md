@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier.svg?branch=master)](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier)
 [![Go Report Card](https://goreportcard.com/badge/github.com/030/golang-bitbucket-cloud-build-status-notifier)](https://goreportcard.com/report/github.com/030/golang-bitbucket-cloud-build-status-notifier)
 ![DevOps SE Questions](https://img.shields.io/stackexchange/devops/t/bcbsn.svg)
-![DevOps SE Monthly Questions](https://img.shields.io/stackexchange/devops/qm/bcbsn.svg)
 ![Docker Pulls](https://img.shields.io/docker/pulls/utrecht/golang-bitbucket-cloud-build-status-notifier.svg)
 ![Issues](https://img.shields.io/github/issues-raw/030/golang-bitbucket-cloud-build-status-notifier.svg)
 ![Pull requests](https://img.shields.io/github/issues-pr-raw/030/golang-bitbucket-cloud-build-status-notifier.svg)
