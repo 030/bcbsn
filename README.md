@@ -31,6 +31,9 @@ Oauth credentials are required to perform this action and these have to be creat
 menu that resides in bitbucket cloud. Note: a Callback URL, e.g. https://ci-system-name is required in order
 to create Oauth credentials.
 
+In order to run this tool, one could choose to download the binary from the releases section in this
+repository or use docker.
+
 Example for running this command given:
 
 - **client id**: 1234
