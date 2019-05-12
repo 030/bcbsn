@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier.svg?branch=master)](https://travis-ci.org/030/golang-bitbucket-cloud-build-status-notifier)
 [![Go Report Card](https://goreportcard.com/badge/github.com/030/golang-bitbucket-cloud-build-status-notifier)](https://goreportcard.com/report/github.com/030/golang-bitbucket-cloud-build-status-notifier)
 ![Docker Pulls](https://img.shields.io/docker/pulls/utrecht/golang-bitbucket-cloud-build-status-notifier.svg)
+![Total downloads](https://img.shields.io/github/downloads/030/golang-bitbucket-cloud-build-status-notifier/total.svg)
 ![Latest Production Release Version](https://img.shields.io/github/release/030/golang-bitbucket-cloud-build-status-notifier.svg)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=bugs)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=030_golang-bitbucket-cloud-build-status-notifier&metric=code_smells)](https://sonarcloud.io/dashboard?id=030_golang-bitbucket-cloud-build-status-notifier)
