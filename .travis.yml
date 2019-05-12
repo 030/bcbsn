@@ -19,11 +19,11 @@ addons:
       secure: $SONAR_TOKEN
 script:
   - diff -u <(echo -n) <(gofmt -d ./)
-  - export DELIVERABLE="golang-bitbucket-cloud-build-status-notifier-${GOOS}"
+  - export DELIVERABLE="bcbsn-${GOOS}"
   - go test -short -cover -v -coverprofile=coverage.out -covermode=atomic ./...
   - go build -o $DELIVERABLE
   - $SHA512_CMD $DELIVERABLE > ${DELIVERABLE}.sha512.txt
-  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then sonar-scanner -Dsonar.projectKey=030_golang-bitbucket-cloud-build-status-notifier -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.coverage.exclusions=**/*_test.go -Dsonar.go.coverage.reportPaths="coverage.out"; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then sonar-scanner -Dsonar.projectKey=030_bcbsn -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.coverage.exclusions=**/*_test.go -Dsonar.go.coverage.reportPaths="coverage.out"; fi
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
