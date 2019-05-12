@@ -1,4 +1,4 @@
-module golang-bitbucket-cloud-build-status-notifier
+module bcbsn
 
 go 1.12
 
