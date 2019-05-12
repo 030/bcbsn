@@ -45,11 +45,11 @@ impossible to rename repositories on dockerhub.
 ### Added
 - Send a build status to bitbucket cloud.
 
-[Unreleased]: https://github.com/030/compare/v2.0.0...HEAD
-[2.0.0]: https://github.com/030/compare/v1.1.2...v2.0.0
-[1.1.2]: https://github.com/030/compare/v1.1.1...v1.1.2
-[1.1.1]: https://github.com/030/compare/v1.1.0...v1.1.1
-[1.1.0]: https://github.com/030/compare/v1.0.2...v1.1.0
-[1.0.2]: https://github.com/030/compare/v1.0.1...v1.0.2
-[1.0.1]: https://github.com/030/compare/v1.0.0...v1.0.1
-[1.0.0]: https://github.com/030/bsbsn/releases/tag/v1.0.0
+[Unreleased]: https://github.com/030/bcbsn/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/030/bcbsn/compare/1.1.2...2.0.0
+[1.1.2]: https://github.com/030/bcbsn/compare/1.1.1...1.1.2
+[1.1.1]: https://github.com/030/bcbsn/compare/1.1.0...1.1.1
+[1.1.0]: https://github.com/030/bcbsn/compare/1.0.2...1.1.0
+[1.0.2]: https://github.com/030/bcbsn/compare/1.0.1...1.0.2
+[1.0.1]: https://github.com/030/bcbsn/compare/1.0.0...1.0.1
+[1.0.0]: https://github.com/030/bcbsn/releases/tag/1.0.0
