@@ -21,17 +21,13 @@ impossible to rename repositories on dockerhub.
 ### Added
 - Documented how to use the bcbsn tool.
 
-## [1.1.1] - 2015-10-06
+## [1.1.1] - 2019-04-23
 ### Fixed
 - Executable file in Docker image was incorrect.
 
 ## [1.1.0] - 2019-04-23
 ### Changed
 - Improved logging to ensure that it will become easier to use the bcbsn tool.
-
-### Changed
-- Improve argument against commit logs.
-- Start following [SemVer](https://semver.org) properly.
 
 ## [1.0.2] - 2019-03-26
 ### Fixed
