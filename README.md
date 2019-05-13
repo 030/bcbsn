@@ -46,14 +46,34 @@ Example for running this command given:
 - **build number**: 70
 - **build url**: https://travis-ci.org/030/bcbsn/builds/523263434
 
-```
-./bcbsn -keyString 1234:5678 -buildState INPROGRESS -gitCommit f76d123498a053c1789057a41d6c3fcvg8b49cd7 -owner 030 -repositoryName bcbsn -buildNumber 70 -buildURL https://travis-ci.org/030/bcbsn/builds/523263434
-```
-
 [![dockeri.co](https://dockeri.co/image/utrecht/bcbsn)](https://hub.docker.com/r/utrecht/bcbsn)
 
 To print the help message
 
 ```
 docker run utrecht/bcbsn:2.0.0 -h
+```
+
+returns:
+
+```
+Usage of /usr/local/bcbsn:
+  -clientID string
+    	The clientID used for the 'client credentials' token flow with BitBucket
+  -clientSecret string
+    	The clientSecret used for the 'client credentials' token flow with BitBucket
+  -commit string
+    	The commit, e.g. 57484fd5460017aef111e8b4ec116a30ff0b4904
+  -key string
+    	The key, e.g. a unique id of the build (use the build id)
+  -name string
+    	An identifier for the build e.g. 'build 2'
+  -owner string
+    	The owner of the repository, e.g. it is 'atlassian' in 'https://bitbucket.org/atlassian/stash-example-plugin/src/master/'
+  -repoSlug string
+    	The repoSlug, e.g. some-repository
+  -state string
+    	The state, e.g. SUCCESSFUL, INPROGRESS or FAILED
+  -url string
+    	The url, e.g. https://travis-ci.org/030/bcbsn/builds/523263434
 ```
