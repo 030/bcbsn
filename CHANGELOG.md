@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed
-- [GH-37]: `-keyString` replaced by `-clientId` and `-clientSecret`
+- [GH-37]: list of arguments required to use this tool updated.
 
 ## [2.0.0] - 2019-05-12
 ### Added
