@@ -5,8 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.0.1] - 2019-05-14
 ### Fixed
-- [GH-37]: list of arguments required to use this tool updated.
+- List of arguments required to use this tool updated.
+- Publication of artifacts.
 
 ## [2.0.0] - 2019-05-12
 ### Added
@@ -43,7 +46,8 @@ impossible to rename repositories on dockerhub.
 ### Added
 - Send a build status to bitbucket cloud.
 
-[Unreleased]: https://github.com/030/bcbsn/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/030/bcbsn/compare/2.0.1...HEAD
+[2.0.1]: https://github.com/030/bcbsn/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/030/bcbsn/compare/1.1.2...2.0.0
 [1.1.2]: https://github.com/030/bcbsn/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/030/bcbsn/compare/1.1.0...1.1.1

@@ -19,7 +19,7 @@ addons:
       secure: $SONAR_TOKEN
 script:
   - diff -u <(echo -n) <(gofmt -d ./)
-  - export DELIVERABLE="bcbsn-${GOOS}"
+  - export DELIVERABLE="n3dr-${TRAVIS_OS_NAME}"
   - go test -short -cover -v -coverprofile=coverage.out -covermode=atomic ./...
   - go build -o $DELIVERABLE
   - $SHA512_CMD $DELIVERABLE > ${DELIVERABLE}.sha512.txt
