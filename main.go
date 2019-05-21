@@ -68,8 +68,11 @@ func setBuildStatusImpl(httpClient http.Client, bitbucketEndpoint, owner, repoSl
 
 	resp, err := httpClient.Do(req)
 	if resp != nil {
-		if resp.StatusCode != http.StatusOK {
-			return fmt.Errorf("Expected %d, but got %s", http.StatusOK, resp.Status)
+		// Bitbucket returns a 201 when it first creates the build badge all subsequent
+		// requests (i.e. updates on the same build) return a 200. We can't write
+		// it as r != b || r != c as go vet rejects this, see https://github.com/golang/go/issues/28446
+		if !(resp.StatusCode == http.StatusOK || resp.StatusCode == http.StatusCreated) {
+			return fmt.Errorf("Expected 200 or 201, but got %s", resp.Status)
 		}
 		defer resp.Body.Close()
 	}
