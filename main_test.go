@@ -41,7 +41,7 @@ func TestHTTPClientShouldTimeOutAfterTenSeconds(t *testing.T) {
 }
 
 func TestHTTPClientShouldFailIfResponseIsNotA201(t *testing.T) {
-	expectedError := "Expected 200, but got 400 Bad Request"
+	expectedError := "Expected 200 or 201, but got 400 Bad Request"
 	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 	}))
@@ -51,6 +51,30 @@ func TestHTTPClientShouldFailIfResponseIsNotA201(t *testing.T) {
 
 	if err.Error() != expectedError {
 		t.Errorf("Expected '%v', but got '%v'", expectedError, err)
+	}
+}
+
+func TestHTTPClientShouldAcceptAnHTTP200(t *testing.T) {
+	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	}))
+	defer svr.Close()
+
+	err := setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
+	if err != nil {
+		t.Errorf("Expected no error, but got '%v'", err)
+	}
+}
+
+func TestHTTPClientShouldAcceptAnHTTP201(t *testing.T) {
+	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusCreated)
+	}))
+	defer svr.Close()
+
+	err := setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
+	if err != nil {
+		t.Errorf("Expected no error, but got '%v'", err)
 	}
 }
 
