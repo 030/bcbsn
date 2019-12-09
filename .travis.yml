@@ -18,7 +18,7 @@ addons:
     token:
       secure: $SONAR_TOKEN
 script:
-  - diff -u <(echo -n) <(gofmt -d ./)
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then docker run --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.21.0 golangci-lint run -v; fi
   - export DELIVERABLE="bcbsn-${TRAVIS_OS_NAME}"
   - go test -short -cover -v -coverprofile=coverage.out -covermode=atomic ./...
   - go build -o $DELIVERABLE
