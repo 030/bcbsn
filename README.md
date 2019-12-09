@@ -26,6 +26,7 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=030_bcbsn&metric=sqale_index)](https://sonarcloud.io/dashboard?id=030_bcbsn)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=030_bcbsn&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=030_bcbsn)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2809/badge)](https://bestpractices.coreinfrastructure.org/projects/2809)
+[![GolangCI](https://golangci.com/badges/github.com/golangci/golangci-web.svg)](https://golangci.com/r/github.com/030/bcbsn)
 
 The Bitbucket Cloud Build Status Notifier (BCBSN) is a tool that sends a build status to bitbucket cloud.
 Oauth credentials are required to perform this action and these have to be created in the user settings
