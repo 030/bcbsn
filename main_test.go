@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -11,15 +12,13 @@ import (
 )
 
 const (
-	clientID     = "1234"
-	clientSecret = "5678"
-	commit       = "c1o2m3m4i5t6"
-	key          = "1"
-	url          = "http://build.url"
-	state        = "SUCCESSFUL"
-	name         = "build #1"
-	owner        = "030"
-	repoSlug     = "repo_slug"
+	commit   = "c1o2m3m4i5t6"
+	key      = "1"
+	url      = "http://build.url"
+	state    = "SUCCESSFUL"
+	name     = "build #1"
+	owner    = "030"
+	repoSlug = "repo_slug"
 )
 
 var testHTTPClient = http.Client{
@@ -107,5 +106,7 @@ func TestPostBodyHasExpectedContent(t *testing.T) {
 	}))
 	defer svr.Close()
 
-	setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
+	if err := setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name); err != nil {
+		log.Fatal(err)
+	}
 }

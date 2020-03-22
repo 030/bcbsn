@@ -43,7 +43,7 @@ func prepareOAUTH2HTTPClient(httpClient http.Client, clientID, clientSecret stri
 	}
 
 	// Instead of the default httpClient use our custom client (which sets a timeout)
-	ctx := context.WithValue(oauth2.NoContext, oauth2.HTTPClient, httpClient)
+	ctx := context.WithValue(context.Background(), oauth2.HTTPClient, httpClient)
 	return config.Client(ctx)
 }
 
@@ -139,9 +139,7 @@ func main() {
 		flag.Usage()
 		os.Exit(1)
 	}
-
-	err := setBuildStatus(*clientID, *clientSecret, *owner, *repoSlug, *commit, *key, *url, *state, *name)
-	if err != nil {
+	if err := setBuildStatus(*clientID, *clientSecret, *owner, *repoSlug, *commit, *key, *url, *state, *name); err != nil {
 		log.Fatal(err)
 	}
 }
