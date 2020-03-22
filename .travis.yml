@@ -1,6 +1,6 @@
 language: go
 go:
-  - 1.14
+  - 1.14.1
 env:
   global:
     - SHA512_CMD=sha512sum
