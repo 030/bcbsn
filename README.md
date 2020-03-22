@@ -31,7 +31,8 @@
 The Bitbucket Cloud Build Status Notifier (BCBSN) is a tool that sends a build status to bitbucket cloud.
 Oauth credentials are required to perform this action and these have to be created in the user settings
 menu that resides in bitbucket cloud. Note: a Callback URL, e.g. https://ci-system-name is required in order
-to create Oauth credentials.
+to create Oauth credentials and one has to check 'private consumer' if the build status has to be sent
+to private repositories.
 
 In order to run this tool, one could choose to download the binary from the releases section in this
 repository or use docker.
