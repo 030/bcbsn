@@ -1,4 +1,4 @@
-FROM golang:1.12.4-alpine
+FROM golang:1.14.2-alpine
 ENV PROJECT gbcbsn
 RUN mkdir $PROJECT && \
     adduser -D -g '' $PROJECT
