@@ -1,4 +1,4 @@
-FROM golang:1.14.2-alpine
+FROM golang:1.14.2-alpine as builder
 ENV PROJECT gbcbsn
 RUN mkdir $PROJECT && \
     adduser -D -g '' $PROJECT
@@ -9,8 +9,8 @@ RUN apk add git && \
     cp bcbsn /bcbsn
 
 FROM scratch
-COPY --from=0 /etc/passwd /etc/passwd
-COPY --from=0 /bcbsn /usr/local/bcbsn
-COPY --from=0 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /etc/passwd /etc/passwd
+COPY --from=builder /bcbsn /usr/local/bcbsn
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 USER $PROJECT
 ENTRYPOINT ["/usr/local/bcbsn"]
