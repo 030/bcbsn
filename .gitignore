@@ -1,2 +1,4 @@
 vendor
 coverage.out
+cmd/bcbsn/bcbsn
+cmd/bcbsn/bcbsn.sha512.txt
