@@ -1,0 +1,78 @@
+---
+name: DIP
+# 'on':
+#   schedule:
+#     - cron: '15 18 11 * *'
+'on':
+  push:
+    branches:
+      - main
+jobs:
+  dip:
+    runs-on: ubuntu-latest
+    name: Check whether images are up-to-date
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+      # yamllint disable rule:line-length
+      - name: Download DIP
+        run: |
+          curl -L https://github.com/030/dip/releases/download/4.2.1/dip-ubuntu-20.04 -o dip && chmod +x dip
+          tag=$(./dip image --name=utrecht/dip --regex=^4\(\.[0-9]\+\)\{2\}$)
+          sed -i "s|\([0-9]\+\.\)\{2\}[0-9]\+\/dip|${tag}/dip|" ./.github/workflows/dip.yml
+      - name: Check Alpine
+        run: ./dip image --name=alpine --regex=^3\.[0-9]+\.[0-9]+$ --updateDockerfile
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.19.0
+      - name: Check Golang
+        run: |
+          go_major_minor=$(./dip image --name=golang --regex=^1\.[0-9]+$)
+          sed -i "s|\(go\s\)1.*|\1${go_major_minor}|" go.mod
+          echo "Updating golang dependencies..."
+          go get -u ./...
+          go mod tidy
+      - name: Check golangci-lint
+        run: |
+          GOLANGCI_LINT_VERSION=$(./dip image --name=golangci/golangci-lint --regex=^v1\.[0-9]+\.[0-9]+-alpine$)
+          echo "Check whether the latest GolangCI version: '${GOLANGCI_LINT_VERSION}' is used..."
+          sed -i "s|\(golangci-lint:\)v1\.[0-9]\+\.[0-9]\+\-alpine|\1${GOLANGCI_LINT_VERSION}|" ./.github/workflows/go.yml
+      - name: Determine new tag
+        run: |
+          tag=$(current_patch=$(git tag | tail -1 | sed -e "s|.*\.\([0-9]\+\)$|\1|"); new_patch=$(($current_patch + 1)); git tag | tail -1 | sed -e "s|\([0-9]\+\)$|${new_patch}|")
+          echo "New tag: '${tag}'"
+          echo "NEW_TAG=${tag}" >> "$GITHUB_ENV"
+      - name: Update version in various files
+        run: |
+          echo "Checking README.md..."
+          sed -i "s|\(bcbsn:\)\([0-9]\+\.\)\{2\}[0-9]\+|\1${{ env.NEW_TAG }}|" README.md
+      - uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions[bot]
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: 'build(deps): Update versions.'
+          new_branch: dependencies-updater-bot
+      - name: Generate changelog
+        run: |
+          git fetch -p -P
+          git checkout dependencies-updater-bot
+          curl -L https://github.com/git-chglog/git-chglog/releases/download/v0.15.1/git-chglog_0.15.1_linux_amd64.tar.gz -o /tmp/git-chglog_0.15.1_linux_amd64.tar.gz
+          tar -xvf /tmp/git-chglog_0.15.1_linux_amd64.tar.gz -C /tmp
+          chmod +x /tmp/git-chglog
+          /tmp/git-chglog -o docs/CHANGELOG.md --config configs/chglog/config.yml --next-tag ${{ env.NEW_TAG }}
+      - uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions[bot]
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit: --amend --no-edit
+          new_branch: dependencies-updater-bot
+          push: origin dependencies-updater-bot -f
+      - name: create pull request
+        run: |
+          gh pr create --assignee 030 --base main --head dependencies-updater-bot --title 'Update dependencies' --body 'Created by Github action' --reviewer 030
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
