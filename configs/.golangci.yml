@@ -1,0 +1,46 @@
+---
+linters:
+  enable-all: true
+  disable:
+    - bodyclose
+    - cyclop
+    - durationcheck
+    - errorlint
+    - exhaustruct
+    - forbidigo
+    - forcetypeassert
+    - gochecknoglobals
+    - goconst
+    - gocritic
+    - godot
+    - goerr113
+    - gofumpt
+    - golint
+    - gomnd
+    - lll
+    - nestif
+    - nlreturn
+    - noctx
+    - nonamedreturns
+    - paralleltest
+    - revive
+    - stylecheck
+    - testpackage
+    - unused
+    - usestdlibvars
+    - varnamelen
+    - whitespace
+    - wrapcheck
+    - wsl
+    #
+    # The following linters have been deprecated
+    #
+    - maligned
+    - ifshort
+    - structcheck
+    - exhaustivestruct
+    - scopelint
+    - deadcode
+    - nosnakecase
+    - interfacer
+    - varcheck

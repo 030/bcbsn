@@ -35,12 +35,12 @@ func TestHTTPClientShouldTimeOutAfterTenSeconds(t *testing.T) {
 	err := setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
 
 	if !strings.Contains(err.Error(), expectedError) {
-		t.Errorf("Expected '%v', but got '%v'", expectedError, err)
+		t.Errorf("expected '%v', but got '%v'", expectedError, err)
 	}
 }
 
 func TestHTTPClientShouldFailIfResponseIsNotA201(t *testing.T) {
-	expectedError := "Expected 200 or 201, but got 400 Bad Request"
+	expectedError := "expected 200 or 201, but got 400 Bad Request"
 	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 	}))
@@ -49,7 +49,7 @@ func TestHTTPClientShouldFailIfResponseIsNotA201(t *testing.T) {
 	err := setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
 
 	if err.Error() != expectedError {
-		t.Errorf("Expected '%v', but got '%v'", expectedError, err)
+		t.Errorf("expected '%v', but got '%v'", expectedError, err)
 	}
 }
 
@@ -61,7 +61,7 @@ func TestHTTPClientShouldAcceptAnHTTP200(t *testing.T) {
 
 	err := setBuildStatusImpl(testHTTPClient, svr.URL, owner, repoSlug, commit, key, url, state, name)
 	if err != nil {
-		t.Errorf("Expected no error, but got '%v'", err)
+		t.Errorf("expected no error, but got '%v'", err)
 	}
 }
 
@@ -84,24 +84,24 @@ func TestPostBodyHasExpectedContent(t *testing.T) {
 		w.WriteHeader(http.StatusOK)
 
 		if r.Method != "POST" {
-			t.Errorf("Expected ‘POST’ request, got ‘%s’", r.Method)
+			t.Errorf("expected ‘POST’ request, got ‘%s’", r.Method)
 		}
 		if r.URL.EscapedPath() != expectedURL {
-			t.Errorf("Expected request to '%s', got '%s'", expectedURL, r.URL.EscapedPath())
+			t.Errorf("expected request to '%s', got '%s'", expectedURL, r.URL.EscapedPath())
 		}
 		if r.Header.Get("Content-type") != "application/json" {
-			t.Errorf("Expected content-type to be 'application/json', but got '%s'", r.Header.Get("Content-type"))
+			t.Errorf("expected content-type to be 'application/json', but got '%s'", r.Header.Get("Content-type"))
 		}
 
 		decoder := json.NewDecoder(r.Body)
 		var actualBody Body
 		err := decoder.Decode(&actualBody)
 		if err != nil {
-			t.Errorf("Error while reading request JSON: %s", err)
+			t.Errorf("error while reading request JSON: %s", err)
 		}
 
 		if !reflect.DeepEqual(expectedBody, actualBody) {
-			t.Errorf("Expected request body '%s', but was '%s'", expectedBody, actualBody)
+			t.Errorf("expected request body '%s', but was '%s'", expectedBody, actualBody)
 		}
 	}))
 	defer svr.Close()

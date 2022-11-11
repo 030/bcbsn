@@ -1,0 +1,66 @@
+---
+name: Go
+'on': push
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: macos-10.15
+            shasum: shasum -a 512
+          - os: ubuntu-20.04
+            shasum: sha512sum
+          - os: windows-2019
+            shasum: sha512sum
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.19.0
+      - name: Unit tests
+        run: |
+          go test -short -cover -v -coverprofile=coverage.txt \
+          -covermode=atomic $(go list ./...)
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+      - uses: codecov/codecov-action@v1
+        with:
+          files: ./coverage.txt
+          flags: unittests
+          verbose: true
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.organization=030-github
+            -Dsonar.projectKey=030_bcbsn
+            -Dsonar.exclusions=test/testdata/**
+            -Dsonar.sources=.
+            -Dsonar.coverage.exclusions=**/*_test.go,test/testdata/**
+            -Dsonar.verbose=true
+            -Dsonar.go.coverage.reportPaths="coverage.txt"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+      - name: Set BCBSN deliverable environment variable
+        run: echo "bcbsn-deliverable=bcbsn-${{ matrix.os }}" >> $GITHUB_ENV
+      - name: Use the value
+        run: |
+          echo "${{ env.bcbsn-deliverable }}"
+      - name: Build
+        run: ./scripts/build.sh
+        env:
+          BCBSN_DELIVERABLE: ${{ env.bcbsn-deliverable }}
+          SHA512_CMD: ${{ matrix.shasum }}
+      - name: Quality
+        run: |
+          docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:v0.7.1 */*.sh -x
+          docker run --rm -v ${PWD}:/data markdownlint/markdownlint:0.11.0 \
+            README.md -s /data/configs/.markdownlint.rb
+          docker run --rm -v $(pwd):/app -w /app -e GOFLAGS=-buildvcs=false \
+            golangci/golangci-lint:v1.50.1-alpine golangci-lint run -v \
+            --timeout 2m30s --config configs/.golangci.yml
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
