@@ -30,14 +30,15 @@
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2809/badge)](https://bestpractices.coreinfrastructure.org/projects/2809)
 [![GolangCI](https://golangci.com/badges/github.com/golangci/golangci-web.svg)](https://golangci.com/r/github.com/030/bcbsn)
 
-The Bitbucket Cloud Build Status Notifier (BCBSN) is a tool that sends a build status to bitbucket cloud.
-Oauth credentials are required to perform this action and these have to be created in the user settings
-menu that resides in bitbucket cloud. Note: a Callback URL, e.g. https://ci-system-name is required in order
-to create Oauth credentials and one has to check 'private consumer' if the build status has to be sent
-to private repositories.
+The Bitbucket Cloud Build Status Notifier (BCBSN) is a tool that sends a build
+status to bitbucket cloud. Oauth credentials are required to perform this
+action and these have to be created in the user settings menu that resides in
+bitbucket cloud. Note: a Callback URL, e.g. <https://ci-system-name/> is
+required in order to create Oauth credentials and one has to check 'private
+consumer' if the build status has to be sent to private repositories.
 
-In order to run this tool, one could choose to download the binary from the releases section in this
-repository or use docker.
+In order to run this tool, one could choose to download the binary from the
+releases section in this repository or use docker.
 
 Example for running this command given:
 
@@ -48,36 +49,36 @@ Example for running this command given:
 - **owner**: 030
 - **repository name**: bcbsn
 - **build number**: 70
-- **build url**: https://travis-ci.org/030/bcbsn/builds/523263434
+- **build url**: <https://travis-ci.org/030/bcbsn/builds/523263434/>
 
 [![dockeri.co](https://dockeri.co/image/utrecht/bcbsn)](https://hub.docker.com/r/utrecht/bcbsn)
 
 To print the help message
 
-```
+```bash
 docker run utrecht/bcbsn:2.0.2 -h
 ```
 
 returns:
 
-```
+```bash
 Usage of /usr/local/bcbsn:
   -clientID string
-    	The clientID used for the 'client credentials' token flow with BitBucket
+      The clientID used for the 'client credentials' token flow with BitBucket
   -clientSecret string
-    	The clientSecret used for the 'client credentials' token flow with BitBucket
+      The clientSecret used for the 'client credentials' token flow with BitBucket
   -commit string
-    	The commit, e.g. 57484fd5460017aef111e8b4ec116a30ff0b4904
+      The commit, e.g. 57484fd5460017aef111e8b4ec116a30ff0b4904
   -key string
-    	The key, e.g. a unique id of the build (use the build id)
+      The key, e.g. a unique id of the build (use the build id)
   -name string
-    	An identifier for the build e.g. 'build 2'
+      An identifier for the build e.g. 'build 2'
   -owner string
-    	The owner of the repository, e.g. it is 'atlassian' in 'https://bitbucket.org/atlassian/stash-example-plugin/src/master/'
+      The owner of the repository, e.g. it is 'atlassian' in 'https://bitbucket.org/atlassian/stash-example-plugin/src/master/'
   -repoSlug string
-    	The repoSlug, e.g. some-repository
+      The repoSlug, e.g. some-repository
   -state string
-    	The state, e.g. SUCCESSFUL, INPROGRESS or FAILED
+      The state, e.g. SUCCESSFUL, INPROGRESS or FAILED
   -url string
-    	The url, e.g. https://travis-ci.org/030/bcbsn/builds/523263434
+      The url, e.g. https://travis-ci.org/030/bcbsn/builds/523263434
 ```
