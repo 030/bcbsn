@@ -27,6 +27,7 @@ jobs:
           go-version: 1.19.0
       - name: Check Golang
         run: |
+          ./dip image --name=golang --regex=^1\.[0-9]+\.[0-9]+-alpine3\.[0-9]+$ --updateDockerfile
           go_major_minor=$(./dip image --name=golang --regex=^1\.[0-9]+$)
           sed -i "s|\(go\s\)1.*|\1${go_major_minor}|" go.mod
           echo "Updating golang dependencies..."

@@ -37,8 +37,6 @@ jobs:
         run: |
           version=$(echo "${{ github.ref }}" | sed -e "s|.*\/\(.*\)$|\1|")
           echo "Version: ${version}"
-          echo "Checking build/package/snap/snapcraft.yaml..."
-          grep ${version} build/package/snap/snapcraft.yaml
           echo "Checking README.md..."
           grep "bcbsn:${version}" README.md
         # yamllint disable rule:line-length

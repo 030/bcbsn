@@ -2,8 +2,11 @@
 ## [Unreleased]
 
 
-<a name="2.1.0"></a>
-## [2.1.0] - 2022-11-11
+<a name="2.0.5"></a>
+## [2.0.5] - 2022-11-15
+### Build
+- **deps:** Update versions.
+
 ### Feat
 - Add autoupdater.
 
@@ -41,8 +44,8 @@
 <a name="1.0.0"></a>
 ## 1.0.0 - 2019-03-17
 
-[Unreleased]: https://github.com/030/bcbsn/compare/2.1.0...HEAD
-[2.1.0]: https://github.com/030/bcbsn/compare/2.0.4...2.1.0
+[Unreleased]: https://github.com/030/bcbsn/compare/2.0.5...HEAD
+[2.0.5]: https://github.com/030/bcbsn/compare/2.0.4...2.0.5
 [2.0.4]: https://github.com/030/bcbsn/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/030/bcbsn/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/030/bcbsn/compare/2.0.1...2.0.2
