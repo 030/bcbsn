@@ -2,12 +2,13 @@
 
 [![CI](https://github.com/030/bcbsn/workflows/Go/badge.svg?event=push)](https://github.com/030/bcbsn/actions?query=workflow%3AGo)
 [![GoDoc Widget]][godoc]
-![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/030/bcbsn)
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/030/bcbsn?logo=go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/030/bcbsn)](https://goreportcard.com/report/github.com/030/bcbsn)
 [![StackOverflow SE Questions](https://img.shields.io/stackexchange/stackoverflow/t/bcbsn.svg?logo=stackoverflow)](https://stackoverflow.com/tags/bcbsn)
 [![DevOps SE Questions](https://img.shields.io/stackexchange/devops/t/bcbsn.svg?logo=stackexchange)](https://devops.stackexchange.com/tags/bcbsn)
 [![ServerFault SE Questions](https://img.shields.io/stackexchange/serverfault/t/bcbsn.svg?logo=serverfault)](https://serverfault.com/tags/bcbsn)
-![Docker Pulls](https://img.shields.io/docker/pulls/utrecht/bcbsn.svg)
+[![Docker Pulls](https://img.shields.io/docker/pulls/utrecht/bcbsn?logo=docker&logoColor=white)](https://hub.docker.com/r/utrecht/bcbsn)
+![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/utrecht/bcbsn?logo=docker&logoColor=white&sort=semver)
 ![Issues](https://img.shields.io/github/issues-raw/030/bcbsn.svg)
 ![Pull requests](https://img.shields.io/github/issues-pr-raw/030/bcbsn.svg)
 ![Total downloads](https://img.shields.io/github/downloads/030/bcbsn/total.svg)
@@ -20,7 +21,7 @@
 ![Commit activity](https://img.shields.io/github/commit-activity/m/030/bcbsn.svg)
 ![Last commit](https://img.shields.io/github/last-commit/030/bcbsn.svg)
 ![Release date](https://img.shields.io/github/release-date/030/bcbsn.svg)
-![Latest Production Release Version](https://img.shields.io/github/release/030/bcbsn.svg)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/030/bcbsn?logo=github&sort=semver)](https://github.com/030/bcbsn/releases/latest)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=030_bcbsn&metric=bugs)](https://sonarcloud.io/dashboard?id=030_bcbsn)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=030_bcbsn&metric=code_smells)](https://sonarcloud.io/dashboard?id=030_bcbsn)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=030_bcbsn&metric=coverage)](https://sonarcloud.io/dashboard?id=030_bcbsn)
@@ -34,9 +35,14 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=030_bcbsn&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=030_bcbsn)
 [![codecov](https://codecov.io/gh/030/bcbsn/branch/main/graph/badge.svg)](https://codecov.io/gh/030/bcbsn)
 [![GolangCI](https://golangci.com/badges/github.com/golangci/golangci-web.svg)](https://golangci.com/r/github.com/030/bcbsn)
+[![Chocolatey](https://img.shields.io/chocolatey/dt/bcbsn)](https://chocolatey.org/packages/bcbsn)
+[![bcbsn](https://snapcraft.io//bcbsn/badge.svg)](https://snapcraft.io/bcbsn)
 [![codebeat badge](https://codebeat.co/badges/f4aa5086-a4d5-41cd-893a-5da816ee9107)](https://codebeat.co/projects/github-com-030-bcbsn-main)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
+[godoc]: https://godoc.org/github.com/030/bcbsn
+[godoc widget]: https://godoc.org/github.com/030/bcbsn?status.svg
 
 The Bitbucket Cloud Build Status Notifier (BCBSN) is a tool that sends a build
 status to bitbucket cloud. Oauth credentials are required to perform this
