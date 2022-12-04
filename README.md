@@ -70,7 +70,7 @@ Example for running this command given:
 To print the help message
 
 ```bash
-docker run utrecht/bcbsn:2.0.5 -h
+docker run utrecht/bcbsn:2.0.6 -h
 ```
 
 returns:
